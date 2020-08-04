@@ -1,0 +1,41 @@
+<!--
+Celina Wright
+301380112
+ckwright@sfu.ca
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link th:href="@{/styles/main.css}" rel="stylesheet" />
+        <title>Game</title>
+    </head>
+    <body>
+        <h1>CMPT 213 Online Hangman Game</h1>
+        <form th:action="@{/guess}" th:object="${game}" method="post">
+            <p>
+                <strong>Game ID: </strong>
+                <span th:text="${game.id}"></span>
+            </p>
+            <p>
+                <strong>Status: </strong>
+                <span th:text="${game.status}"></span>
+            </p>
+            <p>
+                <strong>Progress: </strong>
+                <span th:text="${game.wordProgress}"></span>
+            </p>
+            <p>
+                You have made <span th:text="${game.numGuesses}"></span> guesses, out of which <span th:text="${game.numIncorrectGuesses}"></span> are incorrect.
+            </p>
+            <p>
+                Your guess: <input type="text" maxlength="1">
+                <button type="submit">Make a Guess</button>
+            </p>
+        </form>
+        <hr>
+        <p>
+            <a href="/welcome">Back to Welcome Page</a>
+        </p>
+    </body>
+</html>

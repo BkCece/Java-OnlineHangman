@@ -1,3 +1,19 @@
 html {
-    font-family: sans-serif;
+    background-color: honeydew;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+}
+
+h1 {
+    color: cornflowerblue;
+}
+
+button{
+    background-color: cornflowerblue;
+    color: aliceblue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: large;
+    border: none;
 }

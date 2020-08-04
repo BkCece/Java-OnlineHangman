@@ -1,0 +1,47 @@
+<!--
+Celina Wright
+301380112
+ckwright@sfu.ca
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <link th:href="@{/styles/main.css}" rel="stylesheet" />
+        <title>CMPT 213 Online Hangman Game</title>
+    </head>
+    <body>
+        <h1>Welcome to The Hangman Game!</h1>
+        <p>
+            <h2>About the creator:</h2>
+            <ul>
+                <li><strong>Name:</strong> Celina Wright</li>
+                <li><strong>ID:</strong> 301380112</li>
+                <li><strong>Email:</strong> ckwright@sfu.ca</li>
+            </ul>
+        </p>
+        <p>
+            <h2>Rules of The Game:</h2>
+            <ul>
+                <li>Hangman is a paper and pencil guessing game for two or more players</li>
+                <li>One player thinks of a word, phrase or sentence</li>
+                <li>The other(s) tries to guess it by suggesting letters within a certain number of guesses</li>
+                <li>The word to guess is represented by a row of dashes, representing each letter of the word</li>
+                <li>If the guessing player suggests a letter which occurs in the word, the other player writes it in all its correct positions</li>
+                <li>If the suggested letter does not occur in the word, the other player draws one element of a hanged man stick figure as a tally mark</li>
+                <li>The player guessing the word may, at any time, attempt to guess the whole word</li>
+                <li>If the word is correct, the game is over and the guesser wins</li>
+                <li>Otherwise, the other player may choose to penalize the guesser by adding an element to the diagram</li>
+                <li>If the other player makes enough incorrect guesses to allow his opponent to complete the diagram, the game is also over</li>
+                <li>The guesser can also win by guessing all the letters that appear in the word, thereby completing the word, before the diagram is completed</li>
+                <li>For more information, visit: <a href="https://en.wikipedia.org/wiki/Hangman_(game)">Hangman (game) Wikipedia Page</a> </li>
+            </ul>
+        </p>
+        <p>
+            <form th:action="@{/game}" th:object="${game}" method="post">
+                <button type="submit">Start a New Game!</button>
+            </form>
+        </p>
+    </body>
+</html>

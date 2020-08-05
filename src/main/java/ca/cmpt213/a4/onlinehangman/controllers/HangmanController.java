@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -31,9 +32,6 @@ public class HangmanController {
     @GetMapping("/welcome")
     public String showWelcomePage(){//Model model){
 
-        //promptMessage.setMessage("You are at the welcome page!");
-        //model.addAttribute("promptMessage", promptMessage);
-
         // take the user to welcome.html
         return "welcome";
     }
@@ -49,11 +47,22 @@ public class HangmanController {
     // create-game for game
     @PostMapping("/game")
     public String createHangmanGame(Model model){
+        Game newGame = new Game();
+        newGame.setId(nextId.incrementAndGet());
+        newGame.setStatus("Active");
+        newGame.setNumGuesses(0);
+        newGame.setNumIncorrectGuesses(0);
+        newGame.getNewWord();
+        newGame.initWordProgress();
+        newGame.setWordProgressString(newGame.getWordProgress());
+        //newGame.setWordProgress();
 
-        model.addAttribute("game", new Game());
+        model.addAttribute("game", newGame);
+
         return "game";
     }
 
+    /**
     @PostMapping("/save-game")
     public String saveHangmanGame(@ModelAttribute Game game){
 
@@ -61,6 +70,7 @@ public class HangmanController {
 
         return "result";
     }
+    **/
 
     @GetMapping("/helloworld")
     public String showHelloworldPage(Model model) {

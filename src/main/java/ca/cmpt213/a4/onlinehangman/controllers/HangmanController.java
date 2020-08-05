@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -54,7 +53,7 @@ public class HangmanController {
         newGame.setNumIncorrectGuesses(0);
         newGame.getNewWord();
         newGame.initWordProgress();
-        newGame.setWordProgressString(newGame.getWordProgress());
+        newGame.setWordProgressString(newGame.getWordProgress(), newGame.getWordProgressString());
         //newGame.setWordProgress();
 
         model.addAttribute("game", newGame);

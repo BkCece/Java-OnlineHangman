@@ -155,7 +155,7 @@ public class Game {
 
         // Initialize each character to false - not guessed
         for (int i = 0; i < wordLength; i++){
-            wordProgress.add(true);
+            wordProgress.add(false);
             /**
              * TESTING
              * CHANGE BACK LATER
@@ -171,12 +171,9 @@ public class Game {
         return wordProgressString;
     }
 
-    public void setWordProgressString(List<Boolean> wordProgress, String wordProgressString) {
-
-        // New word, so it dne
-        if(wordProgressString == null) {
-            wordProgressString = "";
-        }
+    public void setWordProgressString(List<Boolean> wordProgress) {
+        // Reset the string
+        wordProgressString = "";
 
         // Check mapping to see if each letter has been guessed yet
         for (int j = 0; j < wordProgress.size(); j++){

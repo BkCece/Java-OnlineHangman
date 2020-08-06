@@ -12,7 +12,7 @@ ckwright@sfu.ca
     </head>
     <body>
         <h1>CMPT 213 Online Hangman Game</h1>
-        <form th:action="@{/guess}" th:object="${game}" method="post">
+        <form th:action="@{/make-guess}" th:object="${game}" method="post">
             <p>
                 <strong>Game ID: </strong>
                 <span th:text="${game.id}"></span>
@@ -29,7 +29,7 @@ ckwright@sfu.ca
                 You have made <span th:text="${game.numGuesses}"></span> guesses, out of which <span th:text="${game.numIncorrectGuesses}"></span> are incorrect.
             </p>
             <p>
-                Your guess: <input type="text" maxlength="1">
+                Your guess: <input type="text" maxlength="1" th:field="*{guess}">
                 <button type="submit">Make a Guess</button>
             </p>
         </form>

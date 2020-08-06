@@ -24,6 +24,9 @@ public class Game {
     private Integer numGuesses;
     private Integer numIncorrectGuesses;
 
+    // A character guess
+    private Character guess;
+
     // The word to be guesses
     private String word;
 
@@ -38,11 +41,12 @@ public class Game {
     }
 
     // Game constructor
-    public Game(Long id, String status, Integer numGuesses, Integer numIncorrectGuesses, String word, List<Boolean> wordProgress, String wordProgressString) {
+    public Game(Long id, String status, Integer numGuesses, Integer numIncorrectGuesses, Character guess, String word, List<Boolean> wordProgress, String wordProgressString) {
         this.id = id;
         this.status = status;
         this.numGuesses = numGuesses;
         this.numIncorrectGuesses = numIncorrectGuesses;
+        this.guess = guess;
         this.word = word;
         this.wordProgress = wordProgress;
         this.wordProgressString = wordProgressString;
@@ -79,6 +83,18 @@ public class Game {
 
     public void setNumIncorrectGuesses(Integer numIncorrectGuesses) {
         this.numIncorrectGuesses = numIncorrectGuesses;
+    }
+
+    public Character getGuess() {
+        return guess;
+    }
+
+    public void setGuess(Character guess) {
+        this.guess = guess;
+    }
+
+    public void setWordProgressString(String wordProgressString) {
+        this.wordProgressString = wordProgressString;
     }
 
     public String getWord() {
@@ -139,7 +155,12 @@ public class Game {
 
         // Initialize each character to false - not guessed
         for (int i = 0; i < wordLength; i++){
-            wordProgress.add(false);
+            wordProgress.add(true);
+            /**
+             * TESTING
+             * CHANGE BACK LATER
+             * wordProgress.add(false);
+             */
         }
 
         setWordProgress(wordProgress);

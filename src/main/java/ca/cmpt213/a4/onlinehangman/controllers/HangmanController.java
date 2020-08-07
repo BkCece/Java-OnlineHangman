@@ -89,49 +89,46 @@ public class HangmanController {
         // Get current game data
         Game currGame = games.get(gameId - 1);
 
-        // Set the current guess
-        currGame.setGuess(game.getGuess().toString().toLowerCase().charAt(0));
-        model.addAttribute("game", currGame);
-        System.out.println("Guess: " + currGame.getGuess());
+        if(game.getGuess() == null || game.getGuess().toString().equals(" ") || game.getGuess().toString().equals("")){
 
-        boolean correctGuess = false;
+            System.out.println("Player did enter a guess");
 
-        // Search the word for the guess
-        for(int k = 0; k < currGame.getWord().length(); k++){
-            if(currGame.getGuess() == currGame.getWord().charAt(k)){
-                // Set to true if it's a match
-                currGame.getWordProgress().set(k, true);
-                correctGuess = true;
+        }else{
+
+            // Set the current guess
+            currGame.setGuess(game.getGuess().toString().toLowerCase().charAt(0));
+            System.out.println("Guess: " + currGame.getGuess());
+            boolean correctGuess = false;
+
+            // Search the word for the guess
+            for(int k = 0; k < currGame.getWord().length(); k++){
+                if(currGame.getGuess() == currGame.getWord().charAt(k)){
+                    // Set to true if it's a match
+                    currGame.getWordProgress().set(k, true);
+                    correctGuess = true;
+                }
             }
+
+            // Increase num incorrect guesses if no matches
+            if(!correctGuess){
+                currGame.setNumIncorrectGuesses(currGame.getNumIncorrectGuesses() + 1);
+            }
+
+            // Increase number of guesses
+            currGame.setNumGuesses(currGame.getNumGuesses() + 1);
+
+            // Set the new word progress string
+            currGame.setWordProgressString(currGame.getWordProgress());
+
+            System.out.println("Word: " + currGame.getWord());
+            System.out.println("Word progress: " + currGame.getWordProgress());
+            System.out.println("WPS: " + currGame.getWordProgressString());
+
+
         }
-
-        // Increase num incorrect guesses if no matches
-        if(!correctGuess){
-            currGame.setNumIncorrectGuesses(currGame.getNumIncorrectGuesses() + 1);
-        }
-
-        // Increase number of guesses
-        currGame.setNumGuesses(currGame.getNumGuesses() + 1);
-
-        // Set the new word progress string
-        currGame.setWordProgressString(currGame.getWordProgress());
-
-        System.out.println("Word: " + currGame.getWord());
-        System.out.println("Word progress: " + currGame.getWordProgress());
-        System.out.println("WPS: " + currGame.getWordProgressString());
-
+        model.addAttribute("game", currGame);
         return "redirect:/game/" + game.getId().toString();
     }
-
-    /**
-    @PostMapping("/save-game")
-    public String saveHangmanGame(@ModelAttribute Game game){
-
-        // TODO: save game in DB here
-
-        return "result";
-    }
-    **/
 
     @GetMapping("/helloworld")
     public String showHelloworldPage(Model model) {

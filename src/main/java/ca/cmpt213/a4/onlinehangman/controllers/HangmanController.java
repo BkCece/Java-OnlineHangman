@@ -46,15 +46,7 @@ public class HangmanController {
     @PostMapping("/game")
     public String createHangmanGame(Model model){
         // Initialize game
-        Game newGame = new Game();
-        newGame.setId(nextId.incrementAndGet());
-        newGame.setStatus("Active");
-        newGame.setNumGuesses(0);
-        newGame.setNumIncorrectGuesses(0);
-        newGame.getNewWord();
-        newGame.initWordProgress();
-        newGame.setWordProgressString(newGame.getWordProgress());
-        //newGame.setWordProgress();
+        Game newGame = new Game(nextId.incrementAndGet());
 
         // Add new game to list and model
         // Should the model replace the need for a list?
@@ -89,8 +81,15 @@ public class HangmanController {
         // Get current game data
         Game currGame = games.get(gameId - 1);
 
-        if(game.getGuess() == null || game.getGuess().toString().equals(" ") || game.getGuess().toString().equals("")){
+        if(!currGame.getStatus().equals("Active")){
+            //Redirect to game over page
+            model.addAttribute("game", currGame);
+            System.out.println("Game over inactive controller");
+            return "gameover";
+        }
 
+        //Check guess for empty input
+        if(game.getGuess() == null || game.getGuess().toString().equals(" ") || game.getGuess().toString().equals("")){
             System.out.println("Player did enter a guess");
 
         }else{
@@ -98,34 +97,32 @@ public class HangmanController {
             // Set the current guess
             currGame.setGuess(game.getGuess().toString().toLowerCase().charAt(0));
             System.out.println("Guess: " + currGame.getGuess());
-            boolean correctGuess = false;
 
-            // Search the word for the guess
-            for(int k = 0; k < currGame.getWord().length(); k++){
-                if(currGame.getGuess() == currGame.getWord().charAt(k)){
-                    // Set to true if it's a match
-                    currGame.getWordProgress().set(k, true);
-                    correctGuess = true;
-                }
-            }
+            // Check for correct guess & set word progress
+            boolean guessResult = currGame.checkGuess();
 
             // Increase num incorrect guesses if no matches
-            if(!correctGuess){
+            if(!guessResult){
                 currGame.setNumIncorrectGuesses(currGame.getNumIncorrectGuesses() + 1);
             }
 
-            // Increase number of guesses
+            // Increase number of guesses & set progress string
             currGame.setNumGuesses(currGame.getNumGuesses() + 1);
-
-            // Set the new word progress string
-            currGame.setWordProgressString(currGame.getWordProgress());
+            currGame.setWordProgressString();
 
             System.out.println("Word: " + currGame.getWord());
             System.out.println("Word progress: " + currGame.getWordProgress());
             System.out.println("WPS: " + currGame.getWordProgressString());
 
-
+            // Check game status
+            if(currGame.getGameOverStatus()){
+                //Redirect to game over page if inactive game
+                model.addAttribute("game", currGame);
+                System.out.println("Game over controller");
+                return "gameover";
+            }
         }
+
         model.addAttribute("game", currGame);
         return "redirect:/game/" + game.getId().toString();
     }

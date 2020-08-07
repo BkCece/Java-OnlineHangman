@@ -5,12 +5,28 @@ ckwright@sfu.ca
 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <link th:href="@{/styles/main.css}" rel="stylesheet" />
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <link th:href="@{/styles/main.css}" rel="stylesheet" />
+        <title>Game Over</title>
+    </head>
+    <body>
+        <h1>CMPT 213 Online Hangman Game</h1>
+            <p>
+                <strong>Game ID: </strong>
+                <span th:text="${game.id}"></span>
+            </p>
+            <p>
+                <strong>Status: </strong>
+                <span th:text="${game.status}"></span>
+            </p>
+            <p>
+                <strong>Word: </strong>
+                <span th:text="${game.word}"></span>
+            </p>
+        <hr>
+        <p>
+            <a href="/welcome">Back to Welcome Page</a>
+        </p>
+    </body>
 </html>

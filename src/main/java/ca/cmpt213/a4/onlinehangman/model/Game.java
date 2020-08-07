@@ -41,15 +41,15 @@ public class Game {
     }
 
     // Game constructor
-    public Game(Long id, String status, Integer numGuesses, Integer numIncorrectGuesses, Character guess, String word, List<Boolean> wordProgress, String wordProgressString) {
+    public Game(Long id) {
         this.id = id;
-        this.status = status;
-        this.numGuesses = numGuesses;
-        this.numIncorrectGuesses = numIncorrectGuesses;
-        this.guess = guess;
-        this.word = word;
-        this.wordProgress = wordProgress;
-        this.wordProgressString = wordProgressString;
+        this.status = "Active";
+        this.numGuesses = 0;
+        this.numIncorrectGuesses = 0;
+        this.guess = null;
+        getNewWord();
+        initWordProgress();
+        setWordProgressString();
     }
 
     // Getters & Setters
@@ -171,7 +171,7 @@ public class Game {
         return wordProgressString;
     }
 
-    public void setWordProgressString(List<Boolean> wordProgress) {
+    public void setWordProgressString() {
         // Reset the string
         wordProgressString = "";
 
@@ -187,5 +187,54 @@ public class Game {
         this.wordProgressString = wordProgressString;
     }
 
+    public boolean checkGuess(){
+        Boolean correctGuess = false;
+
+        // Search the word for the guess
+        for(int k = 0; k < word.length(); k++){
+            if(guess == word.charAt(k)){
+                // Set to true if it's a match
+                wordProgress.set(k, true);
+                correctGuess = true;
+            }
+        }
+
+        return correctGuess;
+    }
+
+    public boolean getGameOverStatus(){
+        if(wordIsCompleted()){
+            // Get win or loss conditions
+            if(numIncorrectGuesses > 7){
+                status = "Lost";
+            }else{
+                status = "Won";
+            }
+
+            System.out.println("Game over");
+            return true;
+        }else{
+            if (numIncorrectGuesses == 7){
+                status = "Lost";
+            }
+        }
+
+        System.out.println("Game not over");
+        return false;
+    }
+
+    public boolean wordIsCompleted(){
+        Boolean completed = true;
+
+        for(int l = 0; l < wordProgress.size(); l++){
+            if(!wordProgress.get(l)){
+                completed = false;
+                break;
+            }
+        }
+        System.out.println("Completed: " + completed);
+
+        return completed;
+    }
 
 }

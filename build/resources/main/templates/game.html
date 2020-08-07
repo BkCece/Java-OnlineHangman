@@ -29,7 +29,7 @@ ckwright@sfu.ca
                 You have made <span th:text="${game.numGuesses}"></span> guesses, out of which <span th:text="${game.numIncorrectGuesses}"></span> are incorrect.
             </p>
             <p>
-                Your guess: <input type="text" maxlength="1" th:field="*{guess}">
+                Your guess: <input type="text" maxlength="1" th:field="*{guess}" onfocus="this.value=''" autofocus>
                 <button type="submit">Make a Guess</button>
             </p>
         </form>

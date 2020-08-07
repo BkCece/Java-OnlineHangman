@@ -67,6 +67,15 @@ public class HangmanController {
         // Get specified game data
         // Game 1 has index 0, need to subtract 1
         Game currGame = games.get(gameId - 1);
+
+        // Check if game has already ended
+        if(!currGame.getStatus().equals("Active")){
+            //Redirect to game over page
+            model.addAttribute("game", currGame);
+            System.out.println("Game over inactive controller");
+            return "gameover";
+        }
+
         model.addAttribute("game", currGame);
 
         System.out.println("Trying a thing, game id: " + currGame.getId() + currGame.getWord());

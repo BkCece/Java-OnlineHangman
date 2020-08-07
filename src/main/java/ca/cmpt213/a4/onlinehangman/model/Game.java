@@ -193,9 +193,14 @@ public class Game {
         // Search the word for the guess
         for(int k = 0; k < word.length(); k++){
             if(guess == word.charAt(k)){
-                // Set to true if it's a match
-                wordProgress.set(k, true);
-                correctGuess = true;
+                // If already set, guess is incorrect
+                if(wordProgress.get(k)){
+                    return correctGuess;
+                }else{
+                    // Set to true if it's a match
+                    wordProgress.set(k, true);
+                    correctGuess = true;
+                }
             }
         }
 

@@ -28,8 +28,13 @@ public class HangmanController {
     private List<Game> games = new ArrayList<>();
     private AtomicLong nextId = new AtomicLong();
 
+    @GetMapping("/")
+    public String redirectFromRoot(){
+        return "redirect:/welcome";
+    }
+
     @GetMapping("/welcome")
-    public String showWelcomePage() {//Model model){
+    public String showWelcomePage() {
         hangmanControllerInit();
 
         // take the user to welcome.html
@@ -37,9 +42,15 @@ public class HangmanController {
     }
 
     // works like a constructor, but wait until dependency injection is done, so it's more like a setup
+    // not really used here for hangman
     @PostConstruct
     public void hangmanControllerInit() {
         promptMessage = new Message("Initializing...");
+    }
+
+    @GetMapping("/game")
+    public void redirectFromGetGame(){
+        throw new GameNotFoundException();
     }
 
     // create-game for game
@@ -75,13 +86,11 @@ public class HangmanController {
 
             model.addAttribute("game", currGame);
 
-
             return "game";
 
         } else {
             throw new GameNotFoundException();
         }
-
     }
 
     // Guess a letter in the word

@@ -1,3 +1,9 @@
+/**
+ * Celina Wright
+ * ckwright@sfu.ca
+ * 301380112
+ */
+
 html {
     background-color: honeydew;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -17,3 +23,31 @@ button{
     font-size: large;
     border: none;
 }
+
+button:hover{
+    background-color: LightSeaGreen;
+}
+
+.notFound{
+    color: black;
+}
+
+button.notFound{
+    background-color: white;
+    font-size: 30px;
+}
+
+button.notFound:hover{
+    background-color: crimson;
+}
+
+.notFoundBG{
+    background-image: url("../images/SFULogo.jpg");
+    background-repeat: repeat;
+    text-align: center;
+}
+
+a:link{
+    text-decoration: none;
+}
+

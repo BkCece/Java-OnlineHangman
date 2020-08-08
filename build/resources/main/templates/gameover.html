@@ -12,6 +12,7 @@ ckwright@sfu.ca
     </head>
     <body>
         <h1>CMPT 213 Online Hangman Game</h1>
+        <p>
             <p>
                 <strong>Game ID: </strong>
                 <span th:text="${game.id}"></span>
@@ -24,9 +25,12 @@ ckwright@sfu.ca
                 <strong>Word: </strong>
                 <span th:text="${game.word}"></span>
             </p>
+        </p>
+        <br>
         <hr>
+        <br>
         <p>
-            <a href="/welcome">Back to Welcome Page</a>
+            <button><a href="/welcome">Back to Welcome Page</a></button>
         </p>
     </body>
 </html>

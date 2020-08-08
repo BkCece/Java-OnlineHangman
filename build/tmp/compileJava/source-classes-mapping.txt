@@ -1,10 +1,10 @@
 ca/cmpt213/a4/onlinehangman/Application.java
  ca.cmpt213.a4.onlinehangman.Application
-ca/cmpt213/a4/onlinehangman/model/Game.java
- ca.cmpt213.a4.onlinehangman.model.Game
-ca/cmpt213/a4/onlinehangman/model/Message.java
- ca.cmpt213.a4.onlinehangman.model.Message
 ca/cmpt213/a4/onlinehangman/controllers/GameNotFoundException.java
  ca.cmpt213.a4.onlinehangman.controllers.GameNotFoundException
+ca/cmpt213/a4/onlinehangman/model/Message.java
+ ca.cmpt213.a4.onlinehangman.model.Message
+ca/cmpt213/a4/onlinehangman/model/Game.java
+ ca.cmpt213.a4.onlinehangman.model.Game
 ca/cmpt213/a4/onlinehangman/controllers/HangmanController.java
  ca.cmpt213.a4.onlinehangman.controllers.HangmanController

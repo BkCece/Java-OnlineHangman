@@ -5,11 +5,11 @@ html {
 }
 
 h1 {
-    color: cornflowerblue;
+    color: teal;
 }
 
 button{
-    background-color: cornflowerblue;
+    background-color: teal;
     color: aliceblue;
     text-align: center;
     padding: 14px 16px;

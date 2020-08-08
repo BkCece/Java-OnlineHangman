@@ -18,6 +18,10 @@ ckwright@sfu.ca
                 <span th:text="${game.id}"></span>
             </p>
             <p>
+                <strong>Maximum number of incorrect guesses: </strong>
+                <span th:text="${game.MAX_GUESSES}"></span>
+            </p>
+            <p>
                 <strong>Status: </strong>
                 <span th:text="${game.status}"></span>
             </p>
@@ -35,7 +39,7 @@ ckwright@sfu.ca
         </form>
         <hr>
         <p>
-            <a href="/welcome">Back to Welcome Page</a>
+            <button><a href="/welcome">Back to Welcome Page</a></button>
         </p>
     </body>
 </html>

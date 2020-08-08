@@ -8,7 +8,6 @@ package ca.cmpt213.a4.onlinehangman.controllers;
 
 import ca.cmpt213.a4.onlinehangman.model.Game;
 import ca.cmpt213.a4.onlinehangman.model.Message;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +16,6 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Class for handling all the get/post requests
@@ -56,8 +52,6 @@ public class HangmanController {
         // Should the model replace the need for a list?
         games.add(newGame);
         model.addAttribute("game", newGame);
-
-        // Update game
 
         return "redirect:/game/" + newGame.getId().toString();
     }

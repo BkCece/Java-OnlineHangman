@@ -16,6 +16,8 @@ import java.util.Scanner;
  * Includes any classes that support the function of the application
  */
 public class Game {
+    private Integer MAX_GUESSES;
+
     // Auto-increment in controller using AtomicLong
     private Long id;
 
@@ -42,6 +44,7 @@ public class Game {
 
     // Game constructor
     public Game(Long id) {
+        this.MAX_GUESSES = 7;
         this.id = id;
         this.status = "Active";
         this.numGuesses = 0;
@@ -53,6 +56,15 @@ public class Game {
     }
 
     // Getters & Setters
+
+    public Integer getMAX_GUESSES() {
+        return MAX_GUESSES;
+    }
+
+    public void setMAX_GUESSES(Integer MAX_GUESSES) {
+        this.MAX_GUESSES = MAX_GUESSES;
+    }
+
     public Long getId() {
         return id;
     }
@@ -110,26 +122,19 @@ public class Game {
         try{
             // Read all words in file
             File wordFile = new File("OnlineHangman\\src\\commonWords.txt");
-            //System.out.println("File created");
 
             Scanner scanner = new Scanner(wordFile);
-            //System.out.println("scanner read");
             while (scanner.hasNextLine()) {
                 words.add(scanner.nextLine());
 
             }
-            //System.out.println("Words: " + words);
-            //System.out.println("Num of words: " + words.size());
             scanner.close();
 
             // Choose a random word from the list
             int randomIndex = (int)(Math.random() * (((words.size() -1) - 0) + 1)) + 0;
-            //System.out.println("Chosen index" + randomIndex);
-
             setWord(words.get(randomIndex));
 
-            //System.out.println("chosen word:" + word);
-
+            System.out.println("Chosen word:" + word);
             setWord(word);
 
         }catch (Exception ex){
@@ -150,17 +155,9 @@ public class Game {
         int wordLength = this.getWord().length();
         wordProgress = new ArrayList<>();
 
-        // Set length to chosen word length
-        //this.wordProgress = new Character[wordLength];
-
         // Initialize each character to false - not guessed
         for (int i = 0; i < wordLength; i++){
             wordProgress.add(false);
-            /**
-             * TESTING
-             * CHANGE BACK LATER
-             * wordProgress.add(false);
-             */
         }
 
         setWordProgress(wordProgress);
@@ -193,14 +190,9 @@ public class Game {
         // Search the word for the guess
         for(int k = 0; k < word.length(); k++){
             if(guess == word.charAt(k)){
-                // If already set, guess is incorrect
-                if(wordProgress.get(k)){
-                    return correctGuess;
-                }else{
-                    // Set to true if it's a match
-                    wordProgress.set(k, true);
-                    correctGuess = true;
-                }
+
+                wordProgress.set(k, true);
+                correctGuess = true;
             }
         }
 
@@ -208,9 +200,10 @@ public class Game {
     }
 
     public boolean getGameOverStatus(){
+
         if(wordIsCompleted()){
             // Get win or loss conditions
-            if(numIncorrectGuesses > 7){
+            if(numIncorrectGuesses > MAX_GUESSES){
                 status = "Lost";
             }else{
                 status = "Won";
@@ -219,12 +212,12 @@ public class Game {
             System.out.println("Game over");
             return true;
         }else{
-            if (numIncorrectGuesses == 7){
+            if (numIncorrectGuesses == MAX_GUESSES){
                 status = "Lost";
             }
         }
 
-        System.out.println("Game not over");
+        //System.out.println("Game not over");
         return false;
     }
 
@@ -237,7 +230,7 @@ public class Game {
                 break;
             }
         }
-        System.out.println("Completed: " + completed);
+        //System.out.println("Completed: " + completed);
 
         return completed;
     }

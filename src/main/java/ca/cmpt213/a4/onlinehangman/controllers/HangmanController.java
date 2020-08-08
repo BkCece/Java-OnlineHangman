@@ -72,6 +72,7 @@ public class HangmanController {
     @GetMapping("/game/{id}")
     public String getGameById(@PathVariable("id") int gameId,
                               Model model) {
+
         if (checkForExistingID(gameId)) {
             // Get specified game data
             // Game 1 has index 0, need to subtract 1

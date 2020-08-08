@@ -121,7 +121,7 @@ public class Game {
         List<String> words = new ArrayList<>();
         try{
             // Read all words in file
-            File wordFile = new File("OnlineHangman\\src\\commonWords.txt");
+            File wordFile = new File("src\\commonWords.txt");
 
             Scanner scanner = new Scanner(wordFile);
             while (scanner.hasNextLine()) {
@@ -212,7 +212,7 @@ public class Game {
             System.out.println("Game over");
             return true;
         }else{
-            if (numIncorrectGuesses == MAX_GUESSES){
+            if (numIncorrectGuesses > MAX_GUESSES){
                 status = "Lost";
             }
         }
